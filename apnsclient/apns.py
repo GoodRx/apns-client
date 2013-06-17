@@ -18,7 +18,10 @@ import datetime
 import select
 from struct import pack, unpack
 
-import OpenSSL
+try:
+    import gevent_openssl as OpenSSL
+except ImportError:
+    import OpenSSL
 
 try:
     import json
