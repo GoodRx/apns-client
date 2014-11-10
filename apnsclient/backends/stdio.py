@@ -36,9 +36,9 @@ LOG = logging.getLogger(__name__)
 class Certificate(BaseCertificate):
     """ pyOpenSSL certificate implementation. """
 
-    def load_context(self, cert_string=None, cert_file=None, key_string=None, key_file=None, passphrase=None):
+    def load_context(self, cert_string=None, cert_file=None, key_string=None, key_file=None, passphrase=None, context_method=OpenSSL.SSL.TLSv1_METHOD):
         """ Initialize and load certificate context. """
-        context = OpenSSL.SSL.Context(OpenSSL.SSL.SSLv3_METHOD)
+        context = OpenSSL.SSL.Context(context_method)
         if passphrase is not None and not isinstance(passphrase, six.binary_type):
             passphrase = six.b(passphrase)
         
